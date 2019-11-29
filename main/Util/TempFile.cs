@@ -24,14 +24,16 @@ namespace NPOI.Util
                 dir = Directory.CreateDirectory(Path.GetTempPath() + @"\poifiles").FullName;
             }
             // Generate a unique new filename 
-            Random rnd = new Random(DateTime.Now.Millisecond);
-            Thread.Sleep(1);
-            string file= dir + "\\" + prefix + rnd.Next() + suffix;
-            while (File.Exists(file))
-            {
-                file = dir + "\\" + prefix + rnd.Next() + suffix;
-                Thread.Sleep(1);
-            }
+            //Random rnd = new Random(DateTime.Now.Millisecond);
+            //Thread.Sleep(1);
+            //string file= dir + "\\" + prefix + rnd.Next() + suffix;
+            //while (File.Exists(file))
+            //{
+            //    file = dir + "\\" + prefix + rnd.Next() + suffix;
+            //    Thread.Sleep(1);
+            //}
+
+            string file = Path.Combine(dir, string.Format("{0}-{1}{2}", prefix, Guid.NewGuid().ToString().Replace("-", ""), suffix));
             FileStream newFile = new FileStream(file, FileMode.CreateNew, FileAccess.ReadWrite);
             newFile.Close();
 
